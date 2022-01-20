@@ -28,113 +28,36 @@ body {
   </style>
 </head>
   
-  <body>
-    <div id="pickColors">
-      <label for="bgColorPicker">Background Color:</label>
-      <input type="color" id="bgColorPicker" value="#000000">
-      <br>
-      <label for="txtColorPicker">Text Color:</label>
-      <input type="color" id="txtColorPicker" value="#ffffff">
-      <br>
-    </div>
-
-    <button id="insertColors" onclick="switchDivs()">Create Widget</button>
+  <body id="pickColors" onclick="changeColors()">
+    <label for="bgColorPicker">Background Color: </label>
+    <input type="color" id="bgColorPicker" value="#000000">
+    <label for="txtColorPicker">Text Color: </label>
+    <input type="color" id="txtColorPicker" value="#ffffff">
+    <br>
+  
+    <a id="insertColors" href="widget.html">Create Widget</a>
     
-    <div id="#mainWidget">
-      <p id="greeting">Greeting</p>
-      <p id="time">Time</p>
-      <p id="date" class="date">Date</p>  
-    </div>
   </body>
 
-  <!--Date and time script-->
-  <script>
-      function currentTime() {
-
-      var weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-
-      var today = new Date();
-      var hrs = today.getHours();
-      var min = today.getMinutes();
-      var dayOfWeek = weekday[today.getDay()];
-      var date = dayOfWeek + ", " + (today.getMonth()+1) + " / " + today.getDate() +' / '+today.getFullYear()  ;
-      
-      var greet;
-      var tod = 'PM';    // Time of day AM/PM
-
-      // Determine message
-      if (hrs < 12)
-      {
-        greet = 'Good Morning';
-        tod = 'AM';
-      }
-      else if (hrs >= 12 && hrs <= 17)
-        greet = 'Good Afternoon';
-      else if (hrs >= 17 && hrs <= 24)
-        greet = 'Good Evening';
-      
-      // Convert to 12 hour format
-      if (hrs > 12)
-        hrs -= 12;
-      else if (hrs === 0)
-        hrs = 12;
-      
-      // Add "0" for minutes less than 10
-      if (min < 10)
-        min = '0' + min.toString();
-
-      // Time as a string
-      var time = hrs.toString() + ':' + min.toString();
-
-      // Display date and time
-      document.getElementById("greeting").innerHTML = greet;
-      document.getElementById("time").innerHTML = time + ' ' + tod;
-      document.getElementById("date").innerHTML = date;
-    }
-
-    setInterval(currentTime, 1000);
-  </script> 
 
   <!--Change background and text colors-->
   <script>
     
-    function switchDivs() {
-      var selection = document.getElementById("pickColors");
-      var main = document.getElementById("mainWidget");
+    function changeColors() {
 
-      // Switch display modes
-      if (selection.style.display === "none") {
-        selection.style.display = "block";
-        main.style.display = "none";
-      }
-      else {
-        selection.style.display = "none";
-        main.style.display = "block";
-      }
+      var backColor = document.getElementById("bgColorPicker").value;
+      var textColor = document.getElementById("txtColorPicker").value;
+      var newURL = "widget.html?backColor=" + backColor;
 
-      var newPage = document.getElementById("");
+      document.getElementById("pickColors").style.backgroundColor = backColor;
+      document.getElementById("pickColors").style.color = textColor;
 
+      document.getElementById("insertColors").href = newURL;
     }
 
+  </script>
 
-    
-    myElement.style.backgroundColor = "#008080";
-    myElement.id = "#008080";
+  <script>
   </script>
 
 </html>
-
-<!--
-
-1. Color Pickers
-  > Background color
-  > Text color
-  > SUBMIT button
-
-2. Generate custom URL (to copy or click)
-  > Display URL and set href to URL
-
-3. Generate new page from URL
-  > 
-
--->
