@@ -13,7 +13,7 @@ body {
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
 
-  background-color: #008080;
+  background-color: red;
   font-family: Veranda, sans-serif;
   font-style: italic;
   font-size: 25px;
@@ -29,11 +29,25 @@ body {
 </head>
   
   <body>
+    <div id="pickColors">
+      <label for="bgColorPicker">Background Color:</label>
+      <input type="color" id="bgColorPicker" value="#000000">
+      <br>
+      <label for="txtColorPicker">Text Color:</label>
+      <input type="color" id="txtColorPicker" value="#ffffff">
+      <br>
+    </div>
+
+    <button id="insertColors" onclick="switchDivs()">Create Widget</button>
+    
+    <div id="#mainWidget">
       <p id="greeting">Greeting</p>
       <p id="time">Time</p>
       <p id="date" class="date">Date</p>  
+    </div>
   </body>
 
+  <!--Date and time script-->
   <script>
       function currentTime() {
 
@@ -81,4 +95,46 @@ body {
     setInterval(currentTime, 1000);
   </script> 
 
+  <!--Change background and text colors-->
+  <script>
+    
+    function switchDivs() {
+      var selection = document.getElementById("pickColors");
+      var main = document.getElementById("mainWidget");
+
+      // Switch display modes
+      if (selection.style.display === "none") {
+        selection.style.display = "block";
+        main.style.display = "none";
+      }
+      else {
+        selection.style.display = "none";
+        main.style.display = "block";
+      }
+
+      var newPage = document.getElementById("");
+
+    }
+
+
+    
+    myElement.style.backgroundColor = "#008080";
+    myElement.id = "#008080";
+  </script>
+
 </html>
+
+<!--
+
+1. Color Pickers
+  > Background color
+  > Text color
+  > SUBMIT button
+
+2. Generate custom URL (to copy or click)
+  > Display URL and set href to URL
+
+3. Generate new page from URL
+  > 
+
+-->
