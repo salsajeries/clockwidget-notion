@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 <head>
-<title>Greeting Card</title>
+<title>Clock Widget</title>
   <style>
 
 body {
@@ -13,8 +13,6 @@ body {
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
 
-  /*background-color: red;
-  color: #e47e7e;*/
   font-family: Veranda, sans-serif;
   font-style: italic;
   font-size: 25px;
@@ -29,18 +27,17 @@ body {
   </style>
 </head>
   
-  <body>
+  <body id="mainWidget">
 
-    <div id="mainWidget">
       <p id="greeting">Greeting</p>
       <p id="time">Time</p>
-      <p id="date" class="date">Date</p>  
-    </div>
-    
+      <p id="date" class="date">Date</p>
+
   </body>
 
   <!--Date and time script-->
   <script>
+
       function currentTime() {
 
       var weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
@@ -85,38 +82,21 @@ body {
     }
 
     setInterval(currentTime, 1000);
+
   </script> 
 
   <!--Change background and text colors-->
   <script>
     
-    var backColor = window.location.href.substring( window.location.href.indexOf('#'), 7 );
-    var textColor = window.location.href.substring( window.location.href.lastIndexOf('#'), 7 );
-
-    console.log(backColor);
-    console.log(textColor);
+    const params = new URLSearchParams(window.location.search);
+    var backColor = "#" + params.get('backColor');
+    var textColor = "#" + params.get('textColor');  
 
     document.getElementById("mainWidget").style.backgroundColor = backColor;
     document.getElementById("mainWidget").style.color = textColor;
 
-    
   </script>
 
 
 
 </html>
-
-<!--
-
-1. Color Pickers
-  > Background color
-  > Text color
-  > SUBMIT button
-
-2. Generate custom URL (to copy or click)
-  > Display URL and set href to URL
-
-3. Generate new page from URL
-  > 
-
--->
